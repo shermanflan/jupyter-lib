@@ -1,0 +1,30 @@
+azure-storage-blob==12.6.0
+azure-storage-file-datalake==12.2.0
+descartes==1.1.0  # for matplotlib
+#fastparquet==0.4.1
+fiona==1.8.18  # wraps OGR - vector
+GDAL==2.4.2
+geojson==2.5.0  # convenience lib for working with geojson
+geopandas==0.8.1  # wraps Shapely, Rtree
+ipyleaflet==0.13.3  # for Jupyter
+jupyter==1.0.0
+#numba==0.52.0
+numpy==1.19.4
+marshmallow==3.10.0
+marshmallow-sqlalchemy==0.24.1
+matplotlib==3.3.3
+pandas==1.1.5
+#pyarrow==2.0.0
+Pygments==2.6.1
+pyodbc==4.0.30
+pyproj==2.2.0  # wraps PROJ - projections, conversion
+pyshp==2.1.2  # convenience lib for working with shapefiles
+psycopg2==2.8.6
+#python-snappy==0.5.4
+rasterio==1.1.8  # wraps GDAL - raster
+requests==2.25.1
+Rtree==0.9.5  # for spatial indexing
+seaborn==0.11.0
+shapely[vectorized]==1.7.1  # wraps GEOS - C++ port of JTS
+SQLAlchemy==1.3.22
+

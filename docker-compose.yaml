@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-#  sql-jupyter-lib:
+#  mssql-jupyter-lib:
 #    image: sql-jupyter-lib
 #    build:
 #      context: ./db/mssql
@@ -11,11 +11,28 @@ services:
 #      - ACCEPT_EULA=Y
 #      - SA_PASSWORD=HelloWorld1
 #      - MSSQL_PID=Developer
+#  pgsql-jupyter-lib:
+#      image: postgres:12
+#      ports:
+#          - "5432:5432"
+#      environment:
+#          - POSTGRES_USER=sa
+#          - POSTGRES_PASSWORD=pwd
+#          - POSTGRES_DB=PyscoDB
+  pgsql-jupyter-lib:
+      image: kartoza/postgis:12.0
+      ports:
+          - "5432:5432"
+      environment:
+          - POSTGRES_USER=sa
+          - POSTGRES_PASSWORD=pwd
+          - POSTGRES_DB=PyscoDB
   jupyter-lib:
     image: jupyter-lib
     build:
       context: .
-      dockerfile: Dockerfile
+#      dockerfile: Dockerfile
+      dockerfile: Dockerfile-gdal.dockerfile
     ports:
       - 8888:8888
     command: "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token=''"
@@ -23,12 +40,15 @@ services:
 #      - sql-jupyter-lib
     env_file: .env
     environment:
-        - APP_LOG_KEY=bhs.aci.geonames2lake.dev
-        - LOG_LEVEL=DEBUG
-        - STORE_BASE_PATH=
-        - SQL_HOST=sql-jupyter-lib
-        - SQL_DB=ScratchDB
-        - SQL_USER=sa
+      - APP_LOG_KEY=bhs.aci.geonames2lake.dev
+      - LOG_LEVEL=DEBUG
+      - STORE_BASE_PATH=
+      - SQL_HOST=sql-jupyter-lib
+      - SQL_DB=ScratchDB
+      - SQL_USER=sa
+      - PG_SERVER=pgsql-jupyter-lib
+      - PG_DATABASE=PyscoDB
+      - PG_UID=sa
     volumes:
       - ./condesa:/opt/jupyter-lib/condesa
     # network_mode: "host"
