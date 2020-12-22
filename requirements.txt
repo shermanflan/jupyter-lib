@@ -10,6 +10,7 @@ numpy==1.19.4
 marshmallow==3.10.0
 marshmallow-sqlalchemy==0.24.1
 matplotlib==3.3.3
+openpyxl==3.0.5
 pandas==1.1.5
 #postal==1.1.9
 pyarrow==2.0.0
