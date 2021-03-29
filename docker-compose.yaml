@@ -19,20 +19,20 @@ services:
 #          - POSTGRES_USER=sa
 #          - POSTGRES_PASSWORD=pwd
 #          - POSTGRES_DB=PyscoDB
-  pgsql-jupyter-lib:
-      image: kartoza/postgis:12.0
-      ports:
-          - "5432:5432"
-      environment:
-          - POSTGRES_USER=sa
-          - POSTGRES_PASSWORD=pwd
-          - POSTGRES_DB=PyscoDB
+#  pgsql-jupyter-lib:
+#      image: kartoza/postgis:12.0
+#      ports:
+#          - "5432:5432"
+#      environment:
+#          - POSTGRES_USER=sa
+#          - POSTGRES_PASSWORD=pwd
+#          - POSTGRES_DB=PyscoDB
   jupyter-lib:
     image: jupyter-lib
     build:
       context: .
-#      dockerfile: Dockerfile
-      dockerfile: Dockerfile-gdal.dockerfile
+      dockerfile: Dockerfile
+#      dockerfile: Dockerfile-gdal.dockerfile
     ports:
       - 8888:8888
     command: "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token=''"
