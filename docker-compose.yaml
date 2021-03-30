@@ -11,15 +11,15 @@ services:
 #      - ACCEPT_EULA=Y
 #      - SA_PASSWORD=HelloWorld1
 #      - MSSQL_PID=Developer
-#  pgsql-jupyter-lib:
-#      image: postgres:12
-#      ports:
-#          - "5432:5432"
-#      environment:
-#          - POSTGRES_USER=sa
-#          - POSTGRES_PASSWORD=pwd
-#          - POSTGRES_DB=PyscoDB
-#  pgsql-jupyter-lib:
+  pgsql-jupyter-lib:
+      image: postgres:11
+      ports:
+          - "5432:5432"
+      environment:
+          - POSTGRES_USER=sa
+          - POSTGRES_PASSWORD=pwd
+          - POSTGRES_DB=psycodb
+#  postgis-jupyter-lib:
 #      image: kartoza/postgis:12.0
 #      ports:
 #          - "5432:5432"
@@ -36,19 +36,21 @@ services:
     ports:
       - 8888:8888
     command: "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token=''"
-#    depends_on:
-#      - sql-jupyter-lib
+    depends_on:
+      - pgsql-jupyter-lib
     env_file: .env
     environment:
-      - APP_LOG_KEY=bhs.aci.geonames2lake.dev
+      - APP_LOG_KEY=
       - LOG_LEVEL=DEBUG
       - STORE_BASE_PATH=
       - SQL_HOST=sql-jupyter-lib
       - SQL_DB=ScratchDB
       - SQL_USER=sa
+      - SQL_PASSWORD=HelloWorld1
       - PG_SERVER=pgsql-jupyter-lib
-      - PG_DATABASE=PyscoDB
+      - PG_DATABASE=psycodb
       - PG_UID=sa
+      - PG_PASSWORD=pwd
     volumes:
       - ./condesa:/opt/jupyter-lib/condesa
     # network_mode: "host"
