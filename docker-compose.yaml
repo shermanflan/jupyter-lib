@@ -12,7 +12,7 @@ services:
 #      - SA_PASSWORD=HelloWorld1
 #      - MSSQL_PID=Developer
   pgsql-jupyter-lib:
-      image: postgres:11
+      image: ${PG_IMAGE}
       ports:
           - "5432:5432"
       environment:
