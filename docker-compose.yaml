@@ -1,32 +1,32 @@
 version: "3.8"
 services:
-#  mssql-jupyter-lib:
-#    image: sql-jupyter-lib
-#    build:
-#      context: ./db/mssql
-#      dockerfile: Dockerfile
-#    ports:
-#      - 1433:1433
-#    environment:
-#      - ACCEPT_EULA=Y
-#      - SA_PASSWORD=HelloWorld1
-#      - MSSQL_PID=Developer
-  pgsql-jupyter-lib:
-      image: ${PG_IMAGE}
-      ports:
-          - "5432:5432"
-      environment:
-          - POSTGRES_USER=sa
-          - POSTGRES_PASSWORD=pwd
-          - POSTGRES_DB=psycodb
-#  postgis-jupyter-lib:
-#      image: kartoza/postgis:12.0
-#      ports:
-#          - "5432:5432"
-#      environment:
-#          - POSTGRES_USER=sa
-#          - POSTGRES_PASSWORD=pwd
-#          - POSTGRES_DB=PyscoDB
+  # mssql-jupyter-lib:
+  #   image: sql-jupyter-lib
+  #   build:
+  #     context: ./db/mssql
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 1433:1433
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=HelloWorld1
+  #     - MSSQL_PID=Developer
+  # pgsql-jupyter-lib:
+  #     image: ${PG_IMAGE}
+  #     ports:
+  #         - "5432:5432"
+  #     environment:
+  #         - POSTGRES_USER=sa
+  #         - POSTGRES_PASSWORD=pwd
+  #         - POSTGRES_DB=psycodb
+  # postgis-jupyter-lib:
+  #   image: kartoza/postgis:12.0
+  #   ports:
+  #       - "5432:5432"
+  #   environment:
+  #       - POSTGRES_USER=sa
+  #       - POSTGRES_PASSWORD=pwd
+  #       - POSTGRES_DB=PyscoDB
   jupyter-lib:
     image: jupyter-lib
     build:
@@ -36,8 +36,8 @@ services:
     ports:
       - 8888:8888
     command: "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token=''"
-    depends_on:
-      - pgsql-jupyter-lib
+    # depends_on:
+    #   - pgsql-jupyter-lib
     env_file: .env
     environment:
       - APP_LOG_KEY=
