@@ -1,5 +1,6 @@
 # 20.04 supports msodbcsql17
-FROM ubuntu:20.04
+# Add platform qualifier for Mac M1 (see https://stackoverflow.com/a/69572323)
+FROM  --platform=linux/amd64 ubuntu:20.04
 
 ENV APP_HOME=/opt/jupyter-lib
 ENV PATH=$PATH:${APP_HOME}
